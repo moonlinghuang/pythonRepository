@@ -1,0 +1,68 @@
+dc1:
+  GW:
+    eve_port: 32773
+    device_template: viosl2_template
+    hostname: r1
+    mgmt_inf: gig0/0
+    mgmt_ip:  10.10.88.110
+    mgmt_subnet: 255.255.255.0
+    enabled_ports:
+      - gig0/0
+      - gig0/1
+      - gig0/2
+
+  swtich1:
+    eve_port: 32769
+    device_template: viosl3_template
+    hostname: sw1
+    mgmt_inf: gig0/0
+    mgmt_ip: 10.10.88.111
+    mgmt_subnet: 255.255.255.0
+    interfaces:
+      gig0/1:
+        vlan: [1,10,20,200]
+        description: TO_DSW2_1
+        mode: trunk
+      gig0/2:
+        vlan: [1,10,20,200]
+        description: TO_DSW2_2
+        mode: trunk
+      gig0/3:
+        vlan: [ 1,10,20,200 ]
+        description: TO_ASW3
+        mode: trunk
+      gig1/0:
+        vlan: [ 1,10,20,200 ]
+        description: TO_AWS4
+        mode: trunk
+    enabled_ports:
+      - gig0/0
+      - gig0/1
+
+  switch2:
+    eve_port: 32770
+    device_template: viosl3_template
+    hostname: sw2
+    mgmt_inf: gig0/0
+    mgmt_ip: 10.10.88.112
+    mgmt_subnet: 255.255.255.0
+    interfaces:
+      gig0/1:
+        vlan: [ 1,10,20,200 ]
+        description: TO_DSW1_1
+        mode: trunk
+      gig0/2:
+        vlan: [ 1,10,20,200 ]
+        description: TO_DSW1_2
+        mode: trunk
+      gig0/3:
+        vlan: [ 1,10,20,200 ]
+        description: TO_ASW3
+        mode: trunk
+      gig1/0:
+        vlan: [ 1,10,20,200 ]
+        description: TO_AWS4
+        mode: access
+    enabled_ports:
+      - gig0/0
+      - gig0/1
